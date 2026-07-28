@@ -2,4 +2,7 @@
   <Folder Name="/section5_llms/">
     <Project Path="TextCompletion/TextCompletion.csproj" />
   </Folder>
+  <Folder Name="/SolutionItems/">
+    <File Path="README.md" />
+  </Folder>
 </Solution>
