@@ -1,5 +1,6 @@
 <Solution>
   <Folder Name="/section5_llms/">
+    <Project Path="section5_llms/FunctionCall/FunctionCall.csproj" />
     <Project Path="section5_llms/TextCompletion/TextCompletion.csproj" />
     <Project Path="section5_llms/TextCompletion_Ollma/TextCompletion_Ollma.csproj" />
   </Folder>
