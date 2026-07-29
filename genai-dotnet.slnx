@@ -4,6 +4,9 @@
     <Project Path="section5_llms/TextCompletion/TextCompletion.csproj" />
     <Project Path="section5_llms/TextCompletion_Ollma/TextCompletion_Ollma.csproj" />
   </Folder>
+  <Folder Name="/section6_vectors/">
+    <Project Path="section6_vectors/Embeddings/Embeddings.csproj" />
+  </Folder>
   <Folder Name="/SolutionItems/">
     <File Path="README.md" />
   </Folder>
