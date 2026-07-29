@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/section5_llms/">
-    <Project Path="TextCompletion/TextCompletion.csproj" />
+    <Project Path="section5_llms/TextCompletion/TextCompletion.csproj" />
+    <Project Path="section5_llms/TextCompletion_Ollma/TextCompletion_Ollma.csproj" />
   </Folder>
   <Folder Name="/SolutionItems/">
     <File Path="README.md" />
