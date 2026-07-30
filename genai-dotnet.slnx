@@ -11,6 +11,7 @@
   </Folder>
   <Folder Name="/section7_rag/">
     <Project Path="section7_rag/ChatApp_RAG/ChatApp_RAG.csproj" />
+    <Project Path="section7_rag/ChatApp_RAG_Ollama/ChatApp_RAG_Ollama.csproj" />
   </Folder>
   <Folder Name="/SolutionItems/">
     <File Path="README.md" />
