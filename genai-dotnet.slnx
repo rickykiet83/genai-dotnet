@@ -9,6 +9,9 @@
     <Project Path="section6_vectors/VectorSearch/VectorSearch.csproj" />
     <Project Path="section6_vectors/VectorSearch_Ollama/VectorSearch_Ollama.csproj" />
   </Folder>
+  <Folder Name="/section7_rag/">
+    <Project Path="section7_rag/ChatApp_RAG/ChatApp_RAG.csproj" />
+  </Folder>
   <Folder Name="/SolutionItems/">
     <File Path="README.md" />
   </Folder>
