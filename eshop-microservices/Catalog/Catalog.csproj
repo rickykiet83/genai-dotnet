@@ -4,6 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <UserSecretsId>cc46ae80-087e-4bd7-827c-bbe4005bfbd4</UserSecretsId>
   </PropertyGroup>
 
   <ItemGroup>
@@ -16,6 +17,8 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.AI" Version="10.8.3" />
+    <PackageReference Include="Microsoft.Extensions.AI.OpenAI" Version="10.8.3" />
   </ItemGroup>
 
 </Project>
