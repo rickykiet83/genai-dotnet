@@ -11,6 +11,7 @@ builder.AddServiceDefaults();
 builder.AddNpgsqlDbContext<CatalogDbContext>(connectionName: "catalogdb");
 
 builder.Services.AddScoped<ProductService>();
+builder.Services.AddScoped<ProductAIService>();
 
 // Add AI Chat Client
 IConfigurationRoot config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
