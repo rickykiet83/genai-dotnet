@@ -1,6 +1,7 @@
 
 using System.ClientModel;
 using Microsoft.Extensions.AI;
+using OllamaSharp;
 using OpenAI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -28,9 +29,14 @@ var options = new OpenAIClientOptions()
     Endpoint = new Uri(endpoint)
 };
 
-// create a chat client
-IChatClient chatClient =
-    new OpenAIClient(credential, options).GetChatClient(model).AsIChatClient();
+using var httpClient = new HttpClient
+{
+    BaseAddress = new Uri(endpoint),
+    Timeout = TimeSpan.FromMinutes(10)
+};
+
+// Create a chat client
+IChatClient chatClient = new OllamaApiClient(httpClient, model);
 
 builder.Services.AddChatClient(chatClient);
 
