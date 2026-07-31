@@ -22,6 +22,7 @@
   <Folder Name="/section8_vision/">
     <Project Path="section8_vision/ImageAnalysis/ImageAnalysis.csproj" />
     <Project Path="section8_vision/ImageAnalysis_Ollama/ImageAnalysis_Ollama.csproj" />
+    <Project Path="section8_vision/TrafficCamAnalysis/TrafficCamAnalysis.csproj" />
   </Folder>
   <Folder Name="/SolutionItems/">
     <File Path="README.md" />
