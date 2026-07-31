@@ -19,6 +19,10 @@
     <Project Path="section7_rag/ChatApp_RAG_Qdrant/ChatApp_RAG_Qdrant.ServiceDefaults/ChatApp_RAG_Qdrant.ServiceDefaults.csproj" />
     <Project Path="section7_rag/ChatApp_RAG_Qdrant/ChatApp_RAG_Qdrant.Web/ChatApp_RAG_Qdrant.Web.csproj" />
   </Folder>
+  <Folder Name="/section8_vision/">
+    <Project Path="section8_vision/ImageAnalysis/ImageAnalysis.csproj" />
+    <Project Path="section8_vision/ImageAnalysis_Ollama/ImageAnalysis_Ollama.csproj" />
+  </Folder>
   <Folder Name="/SolutionItems/">
     <File Path="README.md" />
   </Folder>
