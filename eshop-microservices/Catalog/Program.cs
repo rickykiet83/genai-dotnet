@@ -1,7 +1,6 @@
 
 using System.ClientModel;
 using Microsoft.Extensions.AI;
-using OllamaSharp;
 using OpenAI;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,26 +16,17 @@ builder.Services.AddScoped<ProductAIService>();
 // Add AI Chat Client
 IConfigurationRoot config = new ConfigurationBuilder().AddUserSecrets<Program>().Build();
 
-var credential = new ApiKeyCredential(config["GitHubModels:Token"] ??
-                                      throw new InvalidOperationException(
-                                          "Missing configuration: GitHubModels:Token."));
-var endpoint = config["GitHubModels:Endpoint"] ??
-               throw new InvalidOperationException("Missing configuration: GitHubModels:Endpoint.");
-var model = config["GitHubModels:Model"] ??
-            throw new InvalidOperationException("Missing configuration: GitHubModels:Model.");
-var options = new OpenAIClientOptions()
-{
-    Endpoint = new Uri(endpoint)
-};
+var credential = new ApiKeyCredential(config["OpenAI:ApiKey"]
+                                      ?? throw new InvalidOperationException("Missing configuration: OpenAI:ApiKey."));
 
-using var httpClient = new HttpClient
-{
-    BaseAddress = new Uri(endpoint),
-    Timeout = TimeSpan.FromMinutes(10)
-};
+var model = config["OpenAI:Model"] ??
+            throw new InvalidOperationException("Missing configuration: OpenAI:Model.");
 
 // Create a chat client
-IChatClient chatClient = new OllamaApiClient(httpClient, model);
+var openAiClient = new OpenAIClient(credential);
+IChatClient chatClient = openAiClient
+    .GetChatClient(model)
+    .AsIChatClient();
 
 builder.Services.AddChatClient(chatClient);
 

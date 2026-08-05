@@ -7,16 +7,19 @@ builder.AddServiceDefaults();
 builder.Services.AddHttpClient<CatalogApiClient>(client =>
 {
     client.BaseAddress = new("https+http://catalog");
+    client.Timeout =  TimeSpan.FromMinutes(10);
 });
 
 builder.Services.AddHttpClient<BasketApiClient>(client =>
 {
     client.BaseAddress = new("https+http://basket");
+    client.Timeout =  TimeSpan.FromMinutes(10);
 });
 
 builder.Services.AddHttpClient<OrderingApiClient>(client =>
 {
     client.BaseAddress = new("https+http://ordering");
+    client.Timeout =  TimeSpan.FromMinutes(10);
 });
 
 builder.Services.AddRazorComponents()
