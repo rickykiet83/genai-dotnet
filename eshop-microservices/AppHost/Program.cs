@@ -23,11 +23,19 @@ var sqlServer = builder
 
 var orderdb = sqlServer.AddDatabase("orderdb");
 
+var vectordb = builder.AddQdrant("vectordb")
+        .WithDataVolume()
+        .WithLifetime(ContainerLifetime.Persistent)
+        ;
+
 // Projects
 var catalog = builder
         .AddProject<Projects.Catalog>("catalog")
         .WithReference(catalogdb)
-        .WaitFor(catalogdb);
+        .WaitFor(catalogdb)
+        .WithReference(vectordb)
+        .WaitFor(vectordb)
+        ;
 
 var basket = builder
         .AddProject<Projects.Basket>("basket")
@@ -55,6 +63,7 @@ var webapp = builder
         .WithReference(ordering)
         .WaitFor(catalog)
         .WaitFor(basket)
-        .WaitFor(ordering);
+        .WaitFor(ordering)
+        ;
 
 builder.Build().Run();

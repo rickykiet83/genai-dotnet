@@ -11,15 +11,22 @@ public static class AIServiceCollectionExtensions
         this IServiceCollection services,
         IConfiguration configuration)
     {
-        IChatClient chatClient = GetRequiredSetting(configuration, "AI:Provider").ToLowerInvariant() switch
-        {
-            "openai" => CreateOpenAIChatClient(configuration),
-            "ollama" => CreateOllamaChatClient(configuration),
-            var provider => throw new InvalidOperationException(
-                $"Unsupported AI provider '{provider}'. Supported values are 'OpenAI' and 'Ollama'.")
-        };
+        var provider = GetRequiredSetting(configuration, "AI:Provider");
 
-        services.AddChatClient(chatClient);
+        switch (provider.ToLowerInvariant())
+        {
+            case "openai":
+                services.AddChatClient(CreateOpenAIChatClient(configuration));
+                services.AddEmbeddingGenerator(CreateOpenAIEmbeddingClient(configuration));
+                break;
+            case "ollama":
+                services.AddChatClient(CreateOllamaChatClient(configuration));
+                break;
+            default:
+                throw new InvalidOperationException(
+                    $"Unsupported AI provider '{provider}'. Supported values are 'OpenAI' and 'Ollama'.");
+        }
+
         return services;
     }
 
@@ -27,10 +34,20 @@ public static class AIServiceCollectionExtensions
     {
         var credential = new ApiKeyCredential(GetRequiredSetting(configuration, "AI:OpenAI:ApiKey"));
         var model = GetRequiredSetting(configuration, "AI:OpenAI:Model");
-
+        
         return new OpenAIClient(credential)
             .GetChatClient(model)
             .AsIChatClient();
+    }
+    
+    private static IEmbeddingGenerator<string, Embedding<float>> CreateOpenAIEmbeddingClient(IConfiguration configuration)
+    {
+        var credential = new ApiKeyCredential(GetRequiredSetting(configuration, "AI:OpenAI:ApiKey"));
+        var embeddingModel = GetRequiredSetting(configuration, "AI:OpenAI:EmbeddingModel");
+
+        return new OpenAIClient(credential)
+            .GetEmbeddingClient(embeddingModel)
+            .AsIEmbeddingGenerator();
     }
 
     private static IChatClient CreateOllamaChatClient(IConfiguration configuration)

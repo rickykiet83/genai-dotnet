@@ -11,6 +11,9 @@ builder.Services.AddScoped<ProductAIService>();
 
 builder.Services.AddConfiguredChatClient(builder.Configuration);
 
+builder.AddQdrantClient("vectordb");
+builder.Services.AddQdrantCollection<ulong, ProductVector>("product-vectors");
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

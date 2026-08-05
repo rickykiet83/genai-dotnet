@@ -43,4 +43,5 @@ public class ProductAIService(IChatClient chatClient, CatalogDbContext dbContext
 
         return response.Text ?? "No description available.";
     }
+    
 }
